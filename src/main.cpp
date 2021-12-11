@@ -24,6 +24,7 @@ static void wrerr(const char *p) {
     errno = saved_errno;
 }
 
+
 static void init(void) {
     wrerr("Hello from XTND o/");
 }
