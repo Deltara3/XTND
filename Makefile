@@ -1,11 +1,13 @@
 CC = g++
 CFLAGS = -Wall -g -std=c++2a -fPIC
 
+FILEEXT = so
+
 .PHONY: clean
 
 XTND: main.o
 	@mkdir -p out/obj
-	$(CC) $(CFLAGS) -shared -o out/XTND.so out/obj/main.o
+	$(CC) $(CFLAGS) -shared -o out/XTND.$(FILEEXT) out/obj/main.o
 
 # phony targets
 clean:
@@ -16,5 +18,5 @@ inject:
 	sudo injector -n spwn out/XTND.so
 
 # XTND targets
-main.o: src/XTND/main.cpp
-	$(CC) $(CFLAGS) -o out/obj/main.o -c src/XTND/main.cpp
+main.o: src/main.cpp
+	$(CC) $(CFLAGS) -o out/obj/main.o -c src/main.cpp
