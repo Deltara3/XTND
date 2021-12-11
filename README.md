@@ -1,5 +1,7 @@
 # XTND
 SPWN extension manager.
 
-## requirements
-(libfmt)[https://github.com/fmtlib/fmt]
+## running
+- linux: `LD_PRELOAD="XTND.so" [your spwn here]`
+- windows: idk lmao
+- macos: idk lmao
