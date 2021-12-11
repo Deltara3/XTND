@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -Wall -g -std=c++2a -fPIC
 
-.PHONY: clean inject
+.PHONY: clean
 
 XTND: main.o
 	@mkdir -p out/obj
