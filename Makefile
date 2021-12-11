@@ -20,7 +20,8 @@ inject:
 
 # XTND targets
 main.o: src/XTND/main.cpp
-	$(CC) $(CFLAGS) -o out/obj/main.o -c src/main.cpp
+	$(CC) $(CFLAGS) -o out/obj/main.o -c src/XTND/main.cpp
 
 # launcher targets
 main_launcher.o: src/launcher/main.cpp
+	$(CC) $(CFLAGS) -o out/obj/main_launcher.o -c src/launcher/main.cpp
