@@ -1,4 +1,5 @@
 use std::env;
+use std::process::exit;
 
 mod pkg; use pkg::pkg;
 mod spwn; use spwn::spwn;
@@ -7,5 +8,6 @@ fn main() {
     match argv[1].as_str() {
         "install" | "remove" | "update" => pkg(argv),
         "build" | "b" => spwn(argv),
+        _ => { println!("Unknown command."); exit(0);}
     }
 }
