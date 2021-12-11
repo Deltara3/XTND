@@ -1,5 +1,12 @@
+#include <>
+
 #include <unistd.h>
 #include <errno.h>
+
+// os checks
+#ifndef __linux__
+    #error "only linux supported"
+#endif
 
 static void init(void) __attribute__((constructor));
 
@@ -26,5 +33,9 @@ static void wrerr(const char *p) {
 
 
 static void init(void) {
-    wrerr("Hello from XTND o/");
+    pause();
+    wrerr("Loading XTND...")
+
+    wrerr("XTND loaded.");
+    
 }
