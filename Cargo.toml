@@ -9,6 +9,7 @@ libc = "0.2.111"
 
 [lib]
 name = "xtnd_lib"
+type = ["dylib"]
 path = "lib/src/lib.rs"
 
 [[bin]]
