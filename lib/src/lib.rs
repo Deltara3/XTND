@@ -1,3 +1,5 @@
+#![crate_type = "dylib"]
+
 extern crate libc;
 extern crate ctor;
 extern crate dirs;

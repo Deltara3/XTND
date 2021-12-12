@@ -1,6 +1,10 @@
 [package]
+<<<<<<< HEAD
 name = "xtnd-base"
 default-run = "xtnd"
+=======
+name = "xtnd"
+>>>>>>> f9d4661 (no clue how to compile to dylib tbh ill leave it for tomorrow(tm))
 version = "0.1.0"
 
 [dependencies]
@@ -10,7 +14,11 @@ dirs = "4.0.0"
 libloading = "0.7"
 
 [lib]
+<<<<<<< HEAD
 name = "xtnd_loader"
+=======
+name = "xtnd_lib"
+>>>>>>> f9d4661 (no clue how to compile to dylib tbh ill leave it for tomorrow(tm))
 crate-type = ["dylib"]
 path = "lib/src/lib.rs"
 
