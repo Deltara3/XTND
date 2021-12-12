@@ -1,3 +1,2 @@
-/cli/target
-/lib-rust/target
 /.vscode
+/target
