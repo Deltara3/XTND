@@ -1,6 +1,6 @@
 [package]
-name = "xtnd"
-default-run = "xtnd-cli"
+name = "xtnd-base"
+default-run = "xtnd"
 version = "0.1.0"
 
 [dependencies]
@@ -8,10 +8,10 @@ ctor = "0.1.21"
 libc = "0.2.111"
 
 [lib]
-name = "xtnd_lib"
+name = "xtnd_loader"
 crate-type = ["dylib"]
 path = "lib/src/lib.rs"
 
 [[bin]]
-name = "xtnd-cli"
+name = "xtnd"
 path = "cli/src/main.rs"
