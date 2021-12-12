@@ -1,23 +1,25 @@
-use ctor::{ctor, dtor};
+mod unsafes;
+use unsafes::{print, println};
 
-use crate::unsafe::print;
+use ctor::{ctor, dtor};
 
 #[ctor]
 fn init() {
-    println!("XTND injected.");
+    println("XTND injected.");
     
-    println!("Loading modules...");
+    println("Loading modules...");
     // TODO implement this
     load_modules();
 
-    println!("XTND loaded.");
+    println("XTND loaded.");
 }
 
 fn load_modules() {
     // TODO are you implementing this yet
+
 }
 
 #[dtor]
 fn on_unload() {
-    printf("XTND unloaded.");
+    println("XTND unloaded.");
 }
