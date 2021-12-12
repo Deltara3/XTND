@@ -11,22 +11,26 @@ use ctor::{ctor, dtor};
 #[ctor]
 fn init() {
     println!("XTND injected.");
-    
+
     println!("Loading modules...");
     // TODO implement this
-    load_modules();
+    let total = load_modules();
 
-    println!("XTND loaded.");
+    println!("Loaded {} modules.", total);
+    println!("XTND initalized.");
 }
 
-fn load_modules() {
+fn load_modules() -> i32 {
     // TODO are you implementing this yet
-    println!("Discovering modules...");
+    println!("Locating modules...");
     let paths = read_dir("~/.xtnd").unwrap();
 
+    let mut counted_modules: i32 = 0;
     for path in paths {
-        println!("Dicovered plugin {}", path.unwrap().path().display());
+        println!("Found module: {}", path.unwrap().path().display());
+        counted_modules = counted_modules + 1;
     }
+    return counted_modules;
 }
 
 #[dtor]
