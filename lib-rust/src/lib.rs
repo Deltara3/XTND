@@ -1,16 +1,23 @@
 use ctor::{ctor, dtor};
 
+use crate::unsafe::print;
+
 #[ctor]
-fn on_inject() {
+fn init() {
     println!("XTND injected.");
+    
+    println!("Loading modules...");
+    // TODO implement this
     load_modules();
+
+    println!("XTND loaded.");
 }
 
 fn load_modules() {
-    println!("Loading modules.");
+    // TODO are you implementing this yet
 }
 
 #[dtor]
-unsafe fn on_unload() {
-    libc::printf("XTND unloaded.\n\0".as_ptr() as *const i8);
+fn on_unload() {
+    printf("XTND unloaded.");
 }
