@@ -1,2 +1,4 @@
 /.vscode
 /target
+/lib/target
+/cli/target
