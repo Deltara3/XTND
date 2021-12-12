@@ -11,12 +11,12 @@ pub fn spwn(mut argv: Vec<String>) {
     argv.remove(0);
     argv.remove(0);
 
-    let spwn_out = match OS {
+    let mut spwn_out = match OS {
         "windows" => {
             println!("\u{001b}[31m[ERR] Windows isn't supported yet.");
             std::process::exit(1);
             #[allow(unreachable_code)]
-            Command::new("spwn").spawn() // RUST PLEASE STFU
+            Command::new("spwn").spawn().expect("failed to run spwn") // RUST PLEASE STFU
         },
 
         "macos" => {
@@ -27,6 +27,7 @@ pub fn spwn(mut argv: Vec<String>) {
                 .env("DYLD_FORCE_FLAT_NAMESPACE", "1")
                 .args(argv)
                 .spawn()
+                .expect("failed to run spwn")
         },
 
         "linux" => {
@@ -34,7 +35,12 @@ pub fn spwn(mut argv: Vec<String>) {
                 .env("LD_PRELOAD", "/opt/XTND/XTND.so")
                 .args(argv)
                 .spawn()
+                .expect("failed to run spwn")
         },
         _ => unimplemented!(),
     };
+
+    #[allow(unused_must_use)]
+    spwn_out.wait();
+
 }
