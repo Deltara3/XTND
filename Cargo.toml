@@ -1,6 +1,16 @@
-[workspace]
+[package]
+name = "xtnd"
+default-run = "xtnd-cli"
+version = "0.1.0"
 
-members = [
-	"cli",
-	"lib"
-]
+[dependencies]
+ctor = "0.1.21"
+libc = "0.2.111"
+
+[lib]
+name = "xtnd_lib"
+path = "lib/src/lib.rs"
+
+[[bin]]
+name = "xtnd-cli"
+path = "cli/src/main.rs"

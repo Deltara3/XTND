@@ -60,7 +60,3 @@ dependencies = [
  "ctor",
  "libc",
 ]
-
-[[package]]
-name = "xtnd-cli"
-version = "0.1.0"
