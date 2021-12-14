@@ -9,8 +9,6 @@ pub fn spwn(mut argv: Vec<String>) {
     // TODO spawn spwn process and attach prvw
     // cringe code
     argv.remove(0);
-    argv.remove(0);
-
     let mut spwn_out = match OS {
         "windows" => {
             println!("\u{001b}[31m[ERR] Windows isn't supported yet.");

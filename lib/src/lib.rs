@@ -1,4 +1,4 @@
-#[crate_type = "dylib"]
+#![crate_type = "dylib"]
 
 extern crate libc;
 extern crate ctor;
@@ -14,7 +14,7 @@ use std::env::consts::OS;
 use dirs::home_dir;
 
 use ctor::{ctor, dtor};
-use libloading::{Library, Symbol};
+use libloading::Library;
 
 #[ctor]
 fn init() {
@@ -32,8 +32,9 @@ fn load_modules() -> i32 {
     // TODO are you implementing this yet
     let module_list = read_dir(home_dir().unwrap().join(".xtnd")).unwrap();
 
-    // Potential cringe.
+    // Potential cringe. 
     let mut counted_modules: i32 = 0;
+
     for module in module_list {
         let unwrapped_module = module.unwrap();
         let module_path = unwrapped_module.path();
@@ -48,6 +49,14 @@ fn load_modules() -> i32 {
 
         if module_extension == expected_extension {
             println!("Found module: {:?}", module_path);
+
+            // open up module
+            let module_lib = unsafe { Library::new(&*module_path.to_string_lossy()).unwrap() };// what the fuck
+
+            let init: libloading::Symbol<unsafe extern fn() -> &'static str> = unsafe { module_lib.get(b"init").unwrap() };
+
+            unsafe { init() };
+
             counted_modules += 1;
         }
     }
