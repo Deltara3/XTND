@@ -1,4 +1,4 @@
-#![crate_type = "dylib"]
+#[crate_type = "dylib"]
 
 extern crate libc;
 extern crate ctor;
@@ -9,6 +9,8 @@ mod unsafes;
 use unsafes::println;
 
 use std::fs::read_dir;
+use std::env::consts::OS;
+
 use dirs::home_dir;
 
 use ctor::{ctor, dtor};
@@ -37,12 +39,12 @@ fn load_modules() -> i32 {
         let module_path = unwrapped_module.path();
         let module_extension = module_path.extension().unwrap();
 
-        #[cfg(target_os = "windows")]
-        let expected_extension = std::ffi::OsStr::new("dll");
-        #[cfg(target_os = "macos")]
-        let expected_extension = std::ffi::OsStr::new("dylib");
-        #[cfg(target_os = "linux")]
-        let expected_extension = std::ffi::OsStr::new("so");
+        let expected_extension = std::ffi::OsStr::new(match OS {
+            "windows" => "dll",
+            "macos" => "dylib",
+            "linux" => "so",
+            _ => { panic!("unsupported os"); "idk"}
+        });
 
         if module_extension == expected_extension {
             println!("Found module: {:?}", module_path);
