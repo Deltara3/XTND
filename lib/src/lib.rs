@@ -41,7 +41,7 @@ fn load_modules() -> i32 {
             "windows" => "dll",
             "macos" => "dylib",
             "linux" => "so",
-            _ => { panic!("unsupported os"); "idk"}
+            _ => { panic!("Unsupported operating system."); }
         });
 
         if module_extension == expected_extension {
