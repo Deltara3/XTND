@@ -5,9 +5,6 @@ extern crate ctor;
 extern crate dirs;
 extern crate libloading;
 
-mod unsafes;
-use unsafes::println;
-
 use std::fs::read_dir;
 use std::env::consts::OS;
 
@@ -32,7 +29,7 @@ fn load_modules() -> i32 {
     // TODO are you implementing this yet
     let module_list = read_dir(home_dir().unwrap().join(".xtnd")).unwrap();
 
-    // Potential cringe. 
+    // Potential cringe.
     let mut counted_modules: i32 = 0;
 
     for module in module_list {
@@ -65,5 +62,5 @@ fn load_modules() -> i32 {
 
 #[dtor]
 fn on_unload() {
-    println("XTND unloaded.");
+    unsafe { libc::printf("XTND unloaded.\n\0".as_ptr() as *const i8); }
 }
