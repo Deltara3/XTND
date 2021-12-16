@@ -1,5 +1,7 @@
 use std::env::consts::OS;
-use std::env::set_var;
+
+// Currently appears to be unused, so its commented out for now.
+// use std::env::set_var;
 
 use std::process::Command;
 
@@ -11,15 +13,17 @@ pub fn spwn(mut argv: Vec<String>) {
     argv.remove(0);
     let mut spwn_out = match OS {
         "windows" => {
-            println!("\u{001b}[31m[ERR] Windows isn't supported yet.");
+            println!("\u{001b}[31m[ERROR]\u{001b}[0m Windows isn't supported yet.");
             std::process::exit(1);
             #[allow(unreachable_code)]
-            Command::new("spwn").spawn().expect("failed to run spwn") // RUST PLEASE STFU
+            Command::new("spwn")
+                .spawn()
+                .expect("failed to run spwn") // RUST PLEASE STFU
         },
 
         "macos" => {
             // TODO add correct path
-            println!("\u{001b}[33m[WARN] MacOS support is experimental, use at your own risk.");
+            println!("\u{001b}[33m[WARN]\u{001b}[0m macOS support is experimental, use at your own risk.");
             Command::new("spwn")
                 .env("DYLD_INSERT_LIBRARIES", "/opt/XTND/XTND.so")
                 .env("DYLD_FORCE_FLAT_NAMESPACE", "1")
